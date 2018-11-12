@@ -41,8 +41,19 @@ value_PM25_corr=value(indx1);
 [newtime, indx_time1]=sort(time_PM25_corr);
 value_PM25_corr_sorted=value_PM25_corr(indx_time1);
 
-plot(PM25_doy, value_PM25_sorted, PM25_doy, value_PM25_corr_sorted)
+% plot(PM25_doy, value_PM25_sorted, PM25_doy, value_PM25_corr_sorted)
 
+
+%read IDL data from GEOS-Chem
+gc=restore_idl('formatlab.sav')
+
+plot(PM25_doy-366, value_PM25_sorted, gc.TIME, gc.PM25)
+legend ('Obs (10-day avg=47.8 ug/m^3)','GEOS-Chem (10-day avg=7.7 ug/m^3)', 'FontSize',14)
+set(gca, 'YScale', 'log')
+set(gca,'XTick',[181 183 185 187 189],'XTickLabel',[' July 1';' July 3';' July 5';' July 7';' July 9']);
+set(gca,'YTick',[1 10 20 50 100 200 500],'YTickLabel',['  1';' 10';' 20';' 50';'100';'200';'500']);
+title ('Observation and model results of PM2.5 at Fairbanks in July 2015', 'FontSize',14)
+ylabel('Mass concentration (ug/m3)')
 function julianday=julian(dateinput)
 %dateinput got to be like ymmdd.
         %year=str2num(dateinput(1))+2000;
