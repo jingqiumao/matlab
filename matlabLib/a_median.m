@@ -5,7 +5,10 @@ function [a_m,b_m,c_std,d_mean]=a_median(a,b,delta_a)
 % the middle of the bin;
 % a is the independent variable;
 % b is the dependent variable.
-%
+% here I check the size of two input arrays to make sure they have the same
+% dimension. 
+if ~isequal(size(a), size(b)) b=b', end
+if ~isequal(size(a), size(b)) return, end    
 a_s = length(a);
 a_min = min(a);
 a_max = max(a);
