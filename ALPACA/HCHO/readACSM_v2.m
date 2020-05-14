@@ -3,7 +3,7 @@ set(0,'defaulttextfontsize',14);
 set(0,'defaultlinelinewidth',2);
 
 tempdir = '/Volumes/GoogleDrive/My Drive/ALPACA/ACSM/';
-filename='ACSM Time Series.xls';
+filename='ACSM Time Series_v2.xls';
 opts = detectImportOptions(strcat(tempdir,filename),'NumHeaderLines',0);
 data_ACSM=readtable(strcat(tempdir,filename),opts);
 for i=1:length(data_ACSM.ACSMTime_UTC_)
